@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tevin Pilgrim - Portfolio</title>
+    <title>Your Name - Portfolio</title>
     <style>
         * {
             margin: 0;
@@ -138,18 +138,71 @@
         }
 
         .hero {
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 0 2rem;
+            padding: 8rem 2rem 4rem;
             position: relative;
         }
 
         .hero-content {
-            max-width: 800px;
+            max-width: 1000px;
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .profile-photo {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            border: 4px solid rgba(255, 255, 255, 0.2);
+            animation: fadeInScale 1s ease;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+        }
+
+        /* If you want to use an actual photo, replace the background with: */
+        /* background: url('your-photo.jpg') center/cover; */
+        /* and remove the emoji */
+
+        .profile-photo::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes fadeInScale {
+            from {
+                opacity: 0;
+                transform: scale(0.8);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .hero-text {
+            flex: 1;
+            min-width: 300px;
+            text-align: left;
         }
 
         .hero h1 {
@@ -181,7 +234,6 @@
         .cta-buttons {
             display: flex;
             gap: 1rem;
-            justify-content: center;
             margin-top: 2.5rem;
             animation: fadeInUp 1s ease 0.6s both;
         }
@@ -267,7 +319,23 @@
             text-align: center;
             font-size: 1.2rem;
             opacity: 0.6;
-            margin-bottom: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        .edit-instructions {
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 3rem;
+            padding: 1.5rem;
+            background: rgba(102, 126, 234, 0.1);
+            border: 1px solid rgba(102, 126, 234, 0.3);
+            border-radius: 12px;
+            font-size: 0.95rem;
+            line-height: 1.8;
+        }
+
+        .edit-instructions strong {
+            color: #667eea;
         }
 
         .projects-grid {
@@ -287,6 +355,7 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
             overflow: hidden;
             position: relative;
+            cursor: pointer;
         }
 
         .project-card::before {
@@ -322,6 +391,9 @@
             position: relative;
             overflow: hidden;
         }
+
+        /* To use actual images, replace background with: */
+        /* background: url('project-image.jpg') center/cover; */
 
         .project-image::after {
             content: '';
@@ -436,6 +508,14 @@
         }
 
         @media (max-width: 768px) {
+            .hero-content {
+                flex-direction: column;
+            }
+
+            .hero-text {
+                text-align: center;
+            }
+
             .hero h1 {
                 font-size: 3rem;
             }
@@ -460,6 +540,12 @@
             .cta-buttons {
                 flex-direction: column;
             }
+
+            .profile-photo {
+                width: 150px;
+                height: 150px;
+                font-size: 3rem;
+            }
         }
     </style>
 </head>
@@ -471,7 +557,7 @@
     </div>
 
     <nav>
-        <div class="logo">Tevin Pilgrim</div>
+        <div class="logo">YourName</div>
         <ul class="nav-links">
             <li><a href="#home">Home</a></li>
             <li><a href="#projects">Projects</a></li>
@@ -481,16 +567,23 @@
 
     <section id="home" class="hero">
         <div class="hero-content">
-            <h1>Tevin Pilgrim</h1>
-            <p class="subtitle">Web Developer & Designer</p>
-            <p class="typing-text">Building beautiful digital experiences ✨</p>
-            <div class="cta-buttons">
-                <button class="cta-button" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})">
-                    View Projects
-                </button>
-                <button class="cta-button secondary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
-                    Get In Touch
-                </button>
+            <!-- EDIT THIS: Replace the emoji with your photo by adding:
+                 style="background: url('your-photo.jpg') center/cover;"
+                 Or keep the emoji as a placeholder -->
+            <div class="profile-photo">👤</div>
+            
+            <div class="hero-text">
+                <h1>Your Name</h1>
+                <p class="subtitle">Creative Developer & Designer</p>
+                <p class="typing-text">Building beautiful digital experiences ✨</p>
+                <div class="cta-buttons">
+                    <button class="cta-button" onclick="document.getElementById('projects').scrollIntoView({behavior: 'smooth'})">
+                        View Projects
+                    </button>
+                    <button class="cta-button secondary" onclick="document.getElementById('contact').scrollIntoView({behavior: 'smooth'})">
+                        Get In Touch
+                    </button>
+                </div>
             </div>
         </div>
         <div class="scroll-indicator"></div>
@@ -499,16 +592,30 @@
     <section id="projects" class="projects-section">
         <h2 class="section-title fade-in">Featured Projects</h2>
         <p class="section-subtitle fade-in">A collection of my recent work</p>
+        
+        <div class="edit-instructions fade-in">
+            <strong>📝 How to Edit Projects:</strong><br>
+            For each project card below, you can customize:<br>
+            • <strong>Project Image:</strong> Replace the emoji in <code>project-image</code> div with <code>style="background: url('your-image.jpg') center/cover;"</code><br>
+            • <strong>Project Link:</strong> Add <code>onclick="window.open('your-project-url', '_blank')"</code> to the project-card div<br>
+            • <strong>Title & Description:</strong> Edit the text in <code>project-title</code> and <code>project-description</code><br>
+            • <strong>Tech Tags:</strong> Modify or add tags in the <code>project-tags</code> section
+        </div>
+
         <div class="projects-grid">
+            <!-- EDIT EACH PROJECT BELOW -->
+            <!-- Example with link: <div class="project-card fade-in" onclick="window.open('https://your-project-url.com', '_blank')"> -->
+            
             <div class="project-card fade-in">
+                <!-- EDIT: Replace emoji with your image -->
                 <div class="project-image">🚀</div>
                 <div class="project-content">
-                    <h3 class="project-title">Doctor Who Fan Site</h3>
-                    <p class="project-description">A HTML/CSS/JS Doctor Who fansite </p>
+                    <h3 class="project-title">Project Alpha</h3>
+                    <p class="project-description">A revolutionary platform that streamlines workflows and enhances productivity through intelligent automation.</p>
                     <div class="project-tags">
-                        <span class="tag">HTML</span>
-                        <span class="tag">CSS</span>
-                        <span class="tag">JavaScript</span>
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">MongoDB</span>
                     </div>
                 </div>
             </div>
@@ -584,9 +691,10 @@
         <h3>Let's Build Something Amazing</h3>
         <p style="opacity: 0.7; max-width: 600px; margin: 1rem auto;">I'm always open to discussing new projects, creative ideas, or opportunities to be part of your vision.</p>
         <div class="social-links">
-            <a href="https://github.com/Itsme223">GitHub</a>
-            <a href="https://www.linkedin.com/in/tevin-pilgrim/">LinkedIn</a>
-            <a href="mailto:t.pilgrim23@hotmail.com">Email</a>
+            <a href="https://github.com/yourusername">GitHub</a>
+            <a href="https://linkedin.com/in/yourusername">LinkedIn</a>
+            <a href="mailto:your.email@example.com">Email</a>
+            <a href="https://twitter.com/yourusername">Twitter</a>
         </div>
         <p style="margin-top: 3rem; opacity: 0.5; font-size: 0.9rem;">© 2024 Your Name. Crafted with passion.</p>
     </footer>
